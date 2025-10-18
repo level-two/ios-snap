@@ -1,0 +1,7 @@
+.DS_Store
+/.build/
+/DerivedData/
+/Temp/
+/screens/
+Templates/Runner/build/
+.swiftpm

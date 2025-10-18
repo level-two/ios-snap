@@ -1,0 +1,44 @@
+global:
+  wait: 0.25
+
+scenes:
+  - id: snippet/hello
+    imports:
+      - SwiftUI
+    expr: |
+      VStack(spacing: 12) {
+        Text("Hello from batch mode")
+          .font(.system(size: 26, weight: .bold))
+        Text("Rendered via inline expression")
+          .foregroundStyle(.secondary)
+      }
+      .padding(32)
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .background(
+        RoundedRectangle(cornerRadius: 28)
+          .fill(Color.blue.opacity(0.15))
+      )
+      .padding()
+    variants:
+      - device: "iPhone 15"
+        out: ../screens/batch-snippet-hello.png
+      - device: "iPhone 15"
+        appearance: dark
+        status_bar: "time=09:41 wifi=3 battery=100"
+        out: ../screens/batch-snippet-hello-dark.png
+
+  - id: registry/hello
+    snippet: Registry/Scenes.swift
+    scene: demo/hello
+    variants:
+      - device: "iPhone 15 Pro"
+        out: ../screens/batch-registry-hello.png
+
+  - id: registry/error
+    snippet: Registry/Scenes.swift
+    scene: demo/error
+    variants:
+      - device: "iPhone SE (3rd generation)"
+        appearance: dark
+        content_size: AX2
+        out: ../screens/batch-registry-error.png

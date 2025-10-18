@@ -1,0 +1,21 @@
+global:
+  device: "iPhone 15"
+  out: "../../screens/external-placeholder.png"
+
+scenes:
+  - id: framework-demo
+    snippet: Snippets/FrameworkDemoSnapshot.swift
+    project: FrameworkDemo/FrameworkDemo.xcodeproj
+    dep_schemes:
+      - FrameworkDemo
+    variants:
+      - out: "../../screens/framework-demo.png"
+
+  - id: package-demo
+    snippet: Snippets/PackageDemoSnapshot.swift
+    packages:
+      - PackageDemo
+    products:
+      - PackageFeature
+    variants:
+      - out: "../../screens/package-demo.png"
