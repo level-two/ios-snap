@@ -28,7 +28,7 @@ ios-snap render \
 - Requires macOS, Xcode (with iOS Simulator runtime), SwiftPM.
 - Build from source:
 ```
-git clone https://example.com/ios-snap.git
+git clone https://github.com/level-two/ios-snap.git
 cd ios-snap
 swift build -c release
 cp .build/release/ios-snap /usr/local/bin/
