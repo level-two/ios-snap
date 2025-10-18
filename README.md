@@ -119,6 +119,31 @@ ios-snap batch --config Examples/Snapshots.yml --continue-on-error
 ```
 - The bundled `Examples/Snapshots.yml` generates snippet and registry screenshots into `screens/`.
 
+## External Dependencies
+If your views live in a separate module (framework/package), you can direct ios-snap to build/link those dependencies before compiling the Runner:
+
+Snippet example with a workspace scheme:
+```
+ios-snap render \
+  --snippet Snapshots/CheckoutFlow.swift \
+  --workspace MyApp.xcworkspace \
+  --dep-scheme CheckoutUI \
+  --device 'iPhone 15' \
+  --out screens/checkout.png
+```
+
+SwiftPM package example:
+```
+ios-snap render \
+  --snippet Snapshots/CheckoutFlow.swift \
+  --package ../Checkout \
+  --product CheckoutUI \
+  --device 'iPhone 15' \
+  --out screens/checkout.png
+```
+
+See `Examples/ExternalDeps/README.md` for ready-to-run demos that ship with the repository (framework + SwiftPM).
+
 ## Self-Test
 - Run `Scripts/selftest.sh` on a macOS host with Xcode and simulator runtimes installed to execute the verification matrix from `SPEC.md`.
 - The script builds `ios-snap` in release mode (unless `IOS_SNAP_BIN` is set) and writes outputs to `screens/selftest/` alongside batch artefacts in `screens/`.
@@ -158,31 +183,6 @@ docs/
 
 ## License
 MIT
-
-## External Dependencies (Phase K)
-If your views live in a separate module (framework/package), you can direct ios-snap to build/link those dependencies before compiling the Runner:
-
-Snippet example with a workspace scheme:
-```
-ios-snap render \
-  --snippet Snapshots/CheckoutFlow.swift \
-  --workspace MyApp.xcworkspace \
-  --dep-scheme CheckoutUI \
-  --device 'iPhone 15' \
-  --out screens/checkout.png
-```
-
-SwiftPM package example:
-```
-ios-snap render \
-  --snippet Snapshots/CheckoutFlow.swift \
-  --package ../Checkout \
-  --product CheckoutUI \
-  --device 'iPhone 15' \
-  --out screens/checkout.png
-```
-
-See `Examples/ExternalDeps/README.md` for ready-to-run demos that ship with the repository (framework + SwiftPM).
 
 Notes
 - Products must build for `iphonesimulator`; for Swift modules, enabling `BUILD_LIBRARY_FOR_DISTRIBUTION=YES` is recommended.
